@@ -1,4 +1,9 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using EventEaseAssignment_1.Data;
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddDbContext<EventEaseAssignment_1Context>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("EventEaseAssignment_1Context") ?? throw new InvalidOperationException("Connection string 'EventEaseAssignment_1Context' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
